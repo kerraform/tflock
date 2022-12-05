@@ -19,8 +19,6 @@ changelog:
       order: 2
     - title: Others 🎐
       order: 999
-checksum:
-  name_template: "checksums.txt"
 release:
   github:
     owner: kerraform
