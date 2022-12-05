@@ -1,0 +1,35 @@
+before:
+  hooks:
+    - go mod tidy
+builds:
+  - main: .
+    env:
+      - CGO_ENABLED=0
+changelog:
+  skip: false
+  groups:
+    - title: Features ✨
+      regexp: "^.*feat[(\\w)]*:+.*$"
+      order: 0
+    - title: Doc 📚
+      regexp: "^.*docs[(\\w)]*:+.*$"
+      order: 1
+    - title: Bug Fixes 🐛
+      regexp: "^.*fix[(\\w)]*:+.*$"
+      order: 2
+    - title: Others 🎐
+      order: 999
+release:
+  github:
+    owner: kerraform
+    name: tflock
+brews:
+  - name: tflock
+    tap:
+      owner: kerraform
+      name: homebrew-tap
+      branch: main
+      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
+    url_template: "{{ .ReleaseURL }}"
+    download_strategy: CurlDownloadStrategy
+    description: "Lock Terraform state manually"
