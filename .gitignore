@@ -62,4 +62,8 @@ override.tf.json
 .terraformrc
 terraform.rc
 
+# Environment variables for local development
 .envrc
+
+# Goreleaser dist
+dist/
