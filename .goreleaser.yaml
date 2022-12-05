@@ -5,6 +5,9 @@ builds:
   - main: .
     env:
       - CGO_ENABLED=0
+    ldflags:
+      - -s -w
+      - -X main.Version={{.Version}}
 changelog:
   skip: false
   groups:
