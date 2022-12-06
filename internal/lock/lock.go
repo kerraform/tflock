@@ -1,4 +1,4 @@
-package main
+package lock
 
 import (
 	"fmt"
@@ -13,7 +13,10 @@ import (
 	"github.com/hashicorp/terraform/command/arguments"
 	"github.com/hashicorp/terraform/command/clistate"
 	"github.com/hashicorp/terraform/command/views"
+	"github.com/mitchellh/cli"
 )
+
+var _ cli.Command = (*LockCommand)(nil)
 
 // LockCommand is a Command implementation that lock a Terraform state.
 type LockCommand struct {
@@ -52,7 +55,7 @@ func (c *LockCommand) Synopsis() string {
 	return "Lock your Terraform state"
 }
 
-func logOutput() io.Writer {
+func LogOutput() io.Writer {
 	levels := []logutils.LogLevel{"TRACE", "DEBUG", "INFO", "WARN", "ERROR"}
 	minLevel := os.Getenv("TFLOCK_LOG")
 

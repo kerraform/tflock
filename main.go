@@ -7,11 +7,12 @@ import (
 
 	backendInit "github.com/hashicorp/terraform/backend/init"
 	"github.com/hashicorp/terraform/command"
+	"github.com/kerraform/tflock/internal/lock"
 	"github.com/mitchellh/cli"
 )
 
 func main() {
-	log.SetOutput(logOutput())
+	log.SetOutput(lock.LogOutput())
 
 	backendInit.Init(nil)
 
@@ -26,7 +27,7 @@ func main() {
 
 	commands := map[string]cli.CommandFactory{
 		"": func() (cli.Command, error) {
-			return &LockCommand{
+			return &lock.LockCommand{
 				StateMeta: command.StateMeta{
 					Meta: meta,
 				},
